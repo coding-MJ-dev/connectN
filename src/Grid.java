@@ -9,7 +9,7 @@ public class Grid {
         createGrid(rows, cols);
     }
 
-    private void createGrid(int rows, int cols) {
+    public void createGrid(int rows, int cols) {
         this.grid = new int[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -35,7 +35,7 @@ public class Grid {
     public boolean checkWin(int connectN, int row, int col, GridPosition piece) {
      //check column
         int count = 0;
-        for (int r = this.rows-1; r >= 0; r--) {
+        for (int r = 0; r < this.cols; r++) {
             if (this.grid[r][col] == piece.ordinal()) {
                 count++;
             } else {
@@ -47,7 +47,7 @@ public class Grid {
 
         }
 
-        //check vertical
+        //check horizontal
         count = 0;
         for (int c = 0; c < this.cols; c++) {
             if (grid[row][c] == piece.ordinal()) {

@@ -36,9 +36,9 @@ public class Game {
             for (int piece : grid[r]) {
                 if (piece == GridPosition.EMPTY.ordinal()) {
                     row += "O";
-                } else if (piece == GridPosition.EMPTY.ordinal()) {
+                } else if (piece == GridPosition.YELLOW.ordinal()) {
                     row += "Y";
-                } else if (piece == GridPosition.EMPTY.ordinal()) {
+                } else if (piece == GridPosition.RED.ordinal()) {
                     row += "R";
                 }
             }
@@ -57,14 +57,33 @@ public class Game {
         return new int[] {moveColumn,moveRow};
     }
 
-    public boolean playRound() {
+    public Player playRound() {
         // play game until someone win
-        return true;
+        while (true) {
+            for (Player player : players) {
+                int[] move = playMove(player);
+                if (this.grid.checkWin(connectN,move[0],move[1],player.getPiece())) {
+                    this.score.put(player, score.get(player)+1);
+                    return player;
+                }
+            }
+        }
     }
 
 
 
-    public void play(int rows, int cols, int connectN, int targetScore) {
+    public void play(int rows, int cols) {
+        int maxScore = 0;
+        Player winner = null;
+        while (maxScore < this.targetScore) {
+            winner = playRound();
+            System.out.println("Winner of the round is : " + winner.getName() + "!!!!!!!!!! ");
+            maxScore = Math.max(maxScore, score.get(winner));
+            this.grid.createGrid(rows, cols);
+        }
+        System.out.println("------------------------------------------------------------------");
+        System.out.println("Winner of the game is : " + winner.getName() + "!!!!!!!!!! ");
+        System.out.println("------------------------------------------------------------------");
 
 
     }

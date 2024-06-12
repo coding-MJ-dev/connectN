@@ -21,6 +21,6 @@ public class Main {
         System.out.println();
 
         Game game = new Game(rows, cols, connectN, targetScore);
-        game.printBoard();
+        game.play(rows,cols);
     }
 }
