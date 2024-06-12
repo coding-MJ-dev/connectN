@@ -6,10 +6,10 @@ public class Grid {
     public Grid(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
-        createGrid();
+        createGrid(rows, cols);
     }
 
-    private void createGrid() {
+    private void createGrid(int rows, int cols) {
         this.grid = new int[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
