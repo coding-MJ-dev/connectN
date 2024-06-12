@@ -19,7 +19,7 @@ public class Grid {
     }
 
     public int placePiece(int col, GridPosition piece) {
-        if (col < 0 || col > this.cols) {
+        if (col < 0 || col >= this.cols) {
             throw new Error("Invaild column");
         }
 
@@ -33,9 +33,9 @@ public class Grid {
     }
 
     public boolean checkWin(int connectN, int row, int col, GridPosition piece) {
-     //check column
+     //check vertical
         int count = 0;
-        for (int r = 0; r < this.cols; r++) {
+        for (int r = 0; r < this.rows; r++) {
             if (this.grid[r][col] == piece.ordinal()) {
                 count++;
             } else {
@@ -66,13 +66,13 @@ public class Grid {
             int c = col + row - r;
             if (c >= 0 && c < cols-1 && grid[r][c] == piece.ordinal()) {
                 count++;
+            } else {
+                count = 0;
             }
             if (count == connectN) {
                 return true;
             }
-            else {
-                count = 0;
-            }
+
         }
         // anti - diagonal check
         count = 0;
@@ -80,13 +80,13 @@ public class Grid {
             int c = col - row + r;
             if (c >= 0 && c < cols-1 && grid[r][c] == piece.ordinal()) {
                 count++;
+            }  else {
+                count = 0;
             }
             if (count == connectN) {
                 return true;
             }
-            else {
-                count = 0;
-            }
+
         }
         return false;
     }

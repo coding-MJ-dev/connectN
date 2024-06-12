@@ -77,14 +77,15 @@ public class Game {
         Player winner = null;
         while (maxScore < this.targetScore) {
             winner = playRound();
-            System.out.println("Winner of the round is : " + winner.getName() + "!!!!!!!!!! ");
+            System.out.println(winner.getName() + " win!");
             maxScore = Math.max(maxScore, score.get(winner));
             this.grid.createGrid(rows, cols);
         }
+        System.out.println();
         System.out.println("------------------------------------------------------------------");
         System.out.println("Winner of the game is : " + winner.getName() + "!!!!!!!!!! ");
         System.out.println("------------------------------------------------------------------");
-
+        System.out.println();
 
     }
         // check score == target score
